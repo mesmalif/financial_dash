@@ -11,11 +11,14 @@ from pages import (
     distributions,
     newsReviews,
 )
+from utils import BarGraphFigure
 
 app = dash.Dash(
     __name__, meta_tags=[{"name": "viewport", "content": "width=device-width"}]
 )
 server = app.server
+
+app.config.suppress_callback_exceptions = True
 
 # Describe the layout/ UI of the app
 app.layout = html.Div(
@@ -46,6 +49,51 @@ def display_page(pathname):
         )
     else:
         return overview.create_layout(app)
+
+#  Callback to update bar graphs on dropdown value change
+@app.callback(
+    output=Output("graph-1", "figure"),
+    inputs=[
+        Input("options-dropdown", "value")
+    ],
+)
+def update_bar_chart(selected_option):
+    if selected_option == 'A':
+        y_data = [
+            [
+                "21.67",
+                "11.26",
+                "15.62",
+                "8.37",
+                "11.11",
+            ],
+            [
+                "21.83",
+                "11.41",
+                "15.79",
+                "8.50",
+            ]
+        ]
+    else:
+        y_data = [
+            [
+                "11.67",
+                "5.26",
+                "20.62",
+                "18.37",
+                "9.11",
+            ],
+            [
+                "11.83",
+                "21.41",
+                "18.79",
+                "12.50",
+            ]
+        ]
+
+    fig = BarGraphFigure(y_data)
+
+    return fig
 
 
 if __name__ == "__main__":
