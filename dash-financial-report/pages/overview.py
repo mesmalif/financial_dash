@@ -51,6 +51,21 @@ def create_layout(app):
                         ],
                         className="row",
                     ),
+
+                    # Demo Dropdown
+                    html.Div(
+                        [
+                            dcc.Dropdown(
+                                id="options-dropdown",
+                                options=[
+                                    {'label': 'Option A', 'value': 'A'},
+                                    {'label': 'Option B', 'value': 'B'},
+                                ],
+                                value='A',
+                            ),
+                        ]
+                    ),
+
                     # Row 4
                     html.Div(
                         [
@@ -71,95 +86,95 @@ def create_layout(app):
                                     ),
                                     dcc.Graph(
                                         id="graph-1",
-                                        figure={
-                                            "data": [
-                                                go.Bar(
-                                                    x=[
-                                                        "1 Year",
-                                                        "3 Year",
-                                                        "5 Year",
-                                                        "10 Year",
-                                                        "41 Year",
-                                                    ],
-                                                    y=[
-                                                        "21.67",
-                                                        "11.26",
-                                                        "15.62",
-                                                        "8.37",
-                                                        "11.11",
-                                                    ],
-                                                    marker={
-                                                        "color": "#97151c",
-                                                        "line": {
-                                                            "color": "rgb(255, 255, 255)",
-                                                            "width": 2,
-                                                        },
-                                                    },
-                                                    name="Calibre Index Fund",
-                                                ),
-                                                go.Bar(
-                                                    x=[
-                                                        "1 Year",
-                                                        "3 Year",
-                                                        "5 Year",
-                                                        "10 Year",
-                                                        "41 Year",
-                                                    ],
-                                                    y=[
-                                                        "21.83",
-                                                        "11.41",
-                                                        "15.79",
-                                                        "8.50",
-                                                    ],
-                                                    marker={
-                                                        "color": "#dddddd",
-                                                        "line": {
-                                                            "color": "rgb(255, 255, 255)",
-                                                            "width": 2,
-                                                        },
-                                                    },
-                                                    name="S&P 500 Index",
-                                                ),
-                                            ],
-                                            "layout": go.Layout(
-                                                autosize=False,
-                                                bargap=0.35,
-                                                font={"family": "Raleway", "size": 10},
-                                                height=200,
-                                                hovermode="closest",
-                                                legend={
-                                                    "x": -0.0228945952895,
-                                                    "y": -0.189563896463,
-                                                    "orientation": "h",
-                                                    "yanchor": "top",
-                                                },
-                                                margin={
-                                                    "r": 0,
-                                                    "t": 20,
-                                                    "b": 10,
-                                                    "l": 10,
-                                                },
-                                                showlegend=True,
-                                                title="",
-                                                width=330,
-                                                xaxis={
-                                                    "autorange": True,
-                                                    "range": [-0.5, 4.5],
-                                                    "showline": True,
-                                                    "title": "",
-                                                    "type": "category",
-                                                },
-                                                yaxis={
-                                                    "autorange": True,
-                                                    "range": [0, 22.9789473684],
-                                                    "showgrid": True,
-                                                    "showline": True,
-                                                    "title": "",
-                                                    "type": "linear",
-                                                    "zeroline": False,
-                                                },
-                                            ),
-                                        },
+                                        # figure={
+                                        #     "data": [
+                                        #         go.Bar(
+                                        #             x=[
+                                        #                 "1 Year",
+                                        #                 "3 Year",
+                                        #                 "5 Year",
+                                        #                 "10 Year",
+                                        #                 "41 Year",
+                                        #             ],
+                                        #             y=[
+                                        #                 "21.67",
+                                        #                 "11.26",
+                                        #                 "15.62",
+                                        #                 "8.37",
+                                        #                 "11.11",
+                                        #             ],
+                                        #             marker={
+                                        #                 "color": "#97151c",
+                                        #                 "line": {
+                                        #                     "color": "rgb(255, 255, 255)",
+                                        #                     "width": 2,
+                                        #                 },
+                                        #             },
+                                        #             name="Calibre Index Fund",
+                                        #         ),
+                                        #         go.Bar(
+                                        #             x=[
+                                        #                 "1 Year",
+                                        #                 "3 Year",
+                                        #                 "5 Year",
+                                        #                 "10 Year",
+                                        #                 "41 Year",
+                                        #             ],
+                                        #             y=[
+                                        #                 "21.83",
+                                        #                 "11.41",
+                                        #                 "15.79",
+                                        #                 "8.50",
+                                        #             ],
+                                        #             marker={
+                                        #                 "color": "#dddddd",
+                                        #                 "line": {
+                                        #                     "color": "rgb(255, 255, 255)",
+                                        #                     "width": 2,
+                                        #                 },
+                                        #             },
+                                        #             name="S&P 500 Index",
+                                        #         ),
+                                        #     ],
+                                        #     "layout": go.Layout(
+                                        #         autosize=False,
+                                        #         bargap=0.35,
+                                        #         font={"family": "Raleway", "size": 10},
+                                        #         height=200,
+                                        #         hovermode="closest",
+                                        #         legend={
+                                        #             "x": -0.0228945952895,
+                                        #             "y": -0.189563896463,
+                                        #             "orientation": "h",
+                                        #             "yanchor": "top",
+                                        #         },
+                                        #         margin={
+                                        #             "r": 0,
+                                        #             "t": 20,
+                                        #             "b": 10,
+                                        #             "l": 10,
+                                        #         },
+                                        #         showlegend=True,
+                                        #         title="",
+                                        #         width=330,
+                                        #         xaxis={
+                                        #             "autorange": True,
+                                        #             "range": [-0.5, 4.5],
+                                        #             "showline": True,
+                                        #             "title": "",
+                                        #             "type": "category",
+                                        #         },
+                                        #         yaxis={
+                                        #             "autorange": True,
+                                        #             "range": [0, 22.9789473684],
+                                        #             "showgrid": True,
+                                        #             "showline": True,
+                                        #             "title": "",
+                                        #             "type": "linear",
+                                        #             "zeroline": False,
+                                        #         },
+                                        #     ),
+                                        # },
                                         config={"displayModeBar": False},
                                     ),
                                 ],
