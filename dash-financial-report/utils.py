@@ -94,3 +94,88 @@ def make_dash_table(df):
             html_row.append(html.Td([row[i]]))
         table.append(html.Tr(html_row))
     return table
+
+def BarGraphFigure(y_data):
+    return {
+        'data': [
+            {
+                'x': [
+                    "1 Year",
+                    "3 Year",
+                    "5 Year",
+                    "10 Year",
+                    "41 Year",
+                ],
+                'y': y_data[0],
+                'marker': {
+                    'color': '#97151c',
+                    'line': {
+                        'color': 'rgb(255, 255, 255)',
+                        "width": 2,
+                    }
+                },
+                'name': 'Calibre Index Fund',
+                'type': 'bar',
+            },
+            {
+                'x': [
+                    "1 Year",
+                    "3 Year",
+                    "5 Year",
+                    "10 Year",
+                    "41 Year",
+                ],
+                'y': y_data[1],
+                'marker': {
+                    'color': '#dddddd',
+                    'line': {
+                        'color': 'rgb(255, 255, 255)',
+                        "width": 2,
+                    }
+                },
+                'name': 'S&P 500 Index',
+                'type': 'bar',
+            }
+        ],
+        'layout': {
+            'autosize': False,
+            'bargap': 0.35,
+            'font': {
+                "family": "Raleway", "size": 10
+            },
+            'height': 200,
+            'hovermode': "closest",
+            'legend': {
+                "x": -0.0228945952895,
+                "y": -0.189563896463,
+                "orientation": "h",
+                "yanchor": "top",
+            },
+            'margin': {
+                "r": 0,
+                "t": 20,
+                "b": 10,
+                "l": 10,
+            },
+            'showlegend': True,
+            'title': "",
+            'width': 330,
+            'xaxis': {
+                "autorange": True,
+                "range": [-0.5, 4.5],
+                "showline": True,
+                "title": "",
+                "type": "category",
+            },
+            'yaxis': {
+                "autorange": True,
+                "range": [0, 22.9789473684],
+                "showgrid": True,
+                "showline": True,
+                "title": "",
+                "type": "linear",
+                "zeroline": False,
+            },
+
+        }
+    }
