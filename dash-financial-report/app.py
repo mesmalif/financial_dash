@@ -12,14 +12,6 @@ from pages import (
     newsReviews,
 )
 from utils import BarGraphFigure
-import pandas as pd
-import pathlib
-
-# get relative data folder
-PATH = pathlib.Path(__file__).parent
-DATA_PATH = PATH.joinpath("data").resolve()
-
-df_output = pd.read_csv(DATA_PATH.joinpath("output.csv"))
 
 app = dash.Dash(
     __name__, meta_tags=[{"name": "viewport", "content": "width=device-width"}]
@@ -66,7 +58,40 @@ def display_page(pathname):
     ],
 )
 def update_bar_chart(selected_option):
-    fig = BarGraphFigure(df_output, selected_option)
+    if selected_option == 'A':
+        y_data = [
+            [
+                "21.67",
+                "11.26",
+                "15.62",
+                "8.37",
+                "11.11",
+            ],
+            [
+                "21.83",
+                "11.41",
+                "15.79",
+                "8.50",
+            ]
+        ]
+    else:
+        y_data = [
+            [
+                "11.67",
+                "5.26",
+                "20.62",
+                "18.37",
+                "9.11",
+            ],
+            [
+                "11.83",
+                "21.41",
+                "18.79",
+                "12.50",
+            ]
+        ]
+
+    fig = BarGraphFigure(y_data)
 
     return fig
 

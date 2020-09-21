@@ -58,11 +58,10 @@ def create_layout(app):
                             dcc.Dropdown(
                                 id="options-dropdown",
                                 options=[
-                                    {'label': 'Store A', 'value': 'A'},
-                                    {'label': 'Store B', 'value': 'B'},
+                                    {'label': 'Option A', 'value': 'A'},
+                                    {'label': 'Option B', 'value': 'B'},
                                 ],
-                                value=['A'],
-                                multi=True
+                                value='A',
                             ),
                         ]
                     ),
