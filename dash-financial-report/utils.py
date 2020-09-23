@@ -95,18 +95,30 @@ def make_dash_table(df):
         table.append(html.Tr(html_row))
     return table
 
-def BarGraphFigure(y_data):
-    return {
-        'data': [
+def SumValuesInList(data_list):
+    sum = 0
+    for data in data_list:
+        sum += data
+
+    return sum
+
+def StoreData(df, x_axis_data):
+    store_data = []
+    for data in x_axis_data:
+        filtered_df = df[df.item == str(data)]
+        column_data_list = filtered_df['values'].tolist()
+        values_sum = SumValuesInList(column_data_list)
+        store_data.append(values_sum)
+
+    return store_data
+
+def CompileData(store_a_data, store_b_data, x_axis_data):
+    fig_data = []
+    if store_a_data:
+        fig_data.append(
             {
-                'x': [
-                    "1 Year",
-                    "3 Year",
-                    "5 Year",
-                    "10 Year",
-                    "41 Year",
-                ],
-                'y': y_data[0],
+                'x':x_axis_data,
+                'y':store_a_data,
                 'marker': {
                     'color': '#97151c',
                     'line': {
@@ -114,18 +126,16 @@ def BarGraphFigure(y_data):
                         "width": 2,
                     }
                 },
-                'name': 'Calibre Index Fund',
+                'name': 'Store A Data',
                 'type': 'bar',
-            },
+            }
+        )
+
+    if store_b_data:
+        fig_data.append(
             {
-                'x': [
-                    "1 Year",
-                    "3 Year",
-                    "5 Year",
-                    "10 Year",
-                    "41 Year",
-                ],
-                'y': y_data[1],
+                'x': x_axis_data,
+                'y': store_b_data,
                 'marker': {
                     'color': '#dddddd',
                     'line': {
@@ -133,10 +143,12 @@ def BarGraphFigure(y_data):
                         "width": 2,
                     }
                 },
-                'name': 'S&P 500 Index',
+                'name': 'Store B Data',
                 'type': 'bar',
             }
-        ],
+        )
+    figure = {
+        'data': fig_data,
         'layout': {
             'autosize': False,
             'bargap': 0.35,
@@ -179,3 +191,22 @@ def BarGraphFigure(y_data):
 
         }
     }
+
+    return figure
+
+def BarGraphFigure(selected_df, selected_option):
+    x_axis_data = selected_df.item.unique()
+    store_a_data = None
+    store_b_data = None
+    if len(selected_option) > 1:
+        store_a_data = StoreData(selected_df[selected_df.store == 'Store A'], x_axis_data)
+        store_b_data = StoreData(selected_df[selected_df.store == 'Store B'], x_axis_data)
+    else:
+        if selected_option[0] == 'A':
+            store_a_data = StoreData(selected_df[selected_df.store == 'Store A'], x_axis_data)
+        else:
+            store_b_data = StoreData(selected_df[selected_df.store == 'Store B'], x_axis_data)
+
+    figure = CompileData(store_a_data, store_b_data, x_axis_data)
+
+    return figure
